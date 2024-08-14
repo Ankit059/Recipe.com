@@ -545,6 +545,10 @@ video {
   --tw-contain-style:  ;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -613,8 +617,28 @@ video {
   top: 1.25rem;
 }
 
+.right-20 {
+  right: 5rem;
+}
+
+.right-52 {
+  right: 13rem;
+}
+
+.right-60 {
+  right: 15rem;
+}
+
+.z-30 {
+  z-index: 30;
+}
+
 .m-8 {
   margin: 2rem;
+}
+
+.m-4 {
+  margin: 1rem;
 }
 
 .mb-2 {
@@ -661,6 +685,46 @@ video {
   margin-top: 2.25rem;
 }
 
+.ml-16 {
+  margin-left: 4rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
+.mt-24 {
+  margin-top: 6rem;
+}
+
+.mt-20 {
+  margin-top: 5rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+.mr-8 {
+  margin-right: 2rem;
+}
+
 .block {
   display: block;
 }
@@ -701,6 +765,38 @@ video {
   height: 100vh;
 }
 
+.h-96 {
+  height: 24rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.h-4\/5 {
+  height: 80%;
+}
+
+.h-3\/5 {
+  height: 60%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-max {
+  height: max-content;
+}
+
+.h-2\/4 {
+  height: 50%;
+}
+
+.h-3\/4 {
+  height: 75%;
+}
+
 .w-10 {
   width: 2.5rem;
 }
@@ -737,6 +833,38 @@ video {
   width: 100vw;
 }
 
+.w-96 {
+  width: 24rem;
+}
+
+.w-4\/6 {
+  width: 66.666667%;
+}
+
+.w-3\/5 {
+  width: 60%;
+}
+
+.w-32 {
+  width: 8rem;
+}
+
+.w-24 {
+  width: 6rem;
+}
+
+.w-16 {
+  width: 4rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.w-2\/4 {
+  width: 50%;
+}
+
 .max-w-md {
   max-width: 28rem;
 }
@@ -769,8 +897,24 @@ video {
   gap: 1rem;
 }
 
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.gap-1 {
+  gap: 0.25rem;
+}
+
 .overflow-hidden {
   overflow: hidden;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.overflow-x-scroll {
+  overflow-x: scroll;
 }
 
 .rounded-lg {
@@ -783,6 +927,10 @@ video {
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded-2xl {
+  border-radius: 1rem;
 }
 
 .rounded-b-lg {
@@ -934,6 +1082,11 @@ video {
   line-height: 1rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -970,6 +1123,11 @@ video {
 .text-yellow-700 {
   --tw-text-opacity: 1;
   color: rgb(161 98 7 / var(--tw-text-opacity));
+}
+
+.text-green-600 {
+  --tw-text-opacity: 1;
+  color: rgb(22 163 74 / var(--tw-text-opacity));
 }
 
 .underline {
