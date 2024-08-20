@@ -25,7 +25,7 @@ export const Navbar = () => {
               size={17}
             />
             <Link
-              className="text-white text-lg font-serif absolute top-4 left-8 underline cursor-pointer text-yellow-500"
+              className="text-lg font-serif absolute top-4 left-8 underline cursor-pointer text-yellow-500"
               to="/favPage"
             >
               Favorite
