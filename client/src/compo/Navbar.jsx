@@ -1,12 +1,11 @@
 import React from "react";
 import img from "./fav.png";
-import { Star } from "lucide-react";
 import { Outlet, Link } from "react-router-dom";
 
 export const Navbar = () => {
   return (
     <>
-      <div className="w-screen h-14  border-black bg-gray-800">
+      <div className="w-screen h-14 bg-fixed border-black bg-gray-800">
         <div className="relative   border-black">
           <div className="  border-black w-52 h-14 ">
             <div className="absolute left-3 top-3 w-14">
@@ -19,26 +18,36 @@ export const Navbar = () => {
             </div>
           </div>
 
-          <div className="w-3/6 h-14 absolute top-0 right-0  border-black ">
-            <Star
-              className="text-yellow-500 absolute top-5 left-3.5 cursor-pointer"
-              size={17}
-            />
+          <div className="w-5/6 h-14 flex justify-end items-center absolute top-0 right-0  border-black ">
+            <div className="mr-5 flex flex-col">
+              
+              <div className=""><Link
+                className="text-lg font-serif  underline cursor-pointer text-yellow-500"
+                to="/favPage"
+              >
+                Favorite
+              </Link></div>
+            </div>
+            <div className="mr-5">
             <Link
-              className="text-lg font-serif absolute top-4 left-8 underline cursor-pointer text-yellow-500"
-              to="/favPage"
+              className="text-lg font-serif underline cursor-pointer text-yellow-500"
+              to="/confirm"
             >
-              Favorite
+              Logout
             </Link>
-            
+
+            </div>
+            <div className="">
             <input
-              className="absolute right-3 top-2.5 w-5/6 h-10 rounded-xl text-lg font-semibold pl-10 border-2 border-black "
+              className=" w-96 h-10 mr-2 rounded-xl text-lg font-semibold pl-4 border-2 border-black "
               type="text"
               placeholder="Search recipes"
             />
-            <button className="absolute right-6 bottom-2.5 font-semibold text-lg  px-4 py-0.5  rounded-lg text-white bg-gray-600  active:px-2 active:mr-1 active:py-0 active:mb-0.5">
+            <button className=" font-semibold text-lg px-4 py-0.5 mr-6 rounded-lg text-white bg-gray-600  active:px-2 active:mr-1 active:py-0 active:mb-0.5">
               Search
             </button>
+            </div>
+            
           </div>
         </div>
         <Outlet />
