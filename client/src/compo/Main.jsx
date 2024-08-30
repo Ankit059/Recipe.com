@@ -1,7 +1,6 @@
 import React from "react";
 import { Card} from "./Card";
-import food from './food.png';
-import img from "./fav.png";
+// import img from "./fav.png";
 
 
 export const Main = () => {
@@ -14,16 +13,12 @@ export const Main = () => {
             Rec!pe Finder
           </h1>
         </div> */}
-        <div className=" flex mb-5 mt-20">
-          <img src={img} className="w-16" alt="img" />
-          <div className="">
-            <h1 className="text-4xl font-serif ml-2 ">Recipe.com</h1>
-            <h1 className="text-sm font-serif ml-2 text-gray-800 ">
-              explore the recipes in recipe.com
-            </h1>
-          </div>
+        <div className=" flex space-x-5 mb-5 mt-20">
+          <div className="text-3xl font-thin text-yellow-600 cursor-pointer">All recipe</div>
+          <div className="text-3xl font-thin">|</div>
+          <div className="text-3xl font-thin text-yellow-600 cursor-pointer">My recipe</div>
         </div>
-        <div className="w-4/6 h-auto  border-gray-400  mt-4">
+        <div className="w-5/6 h-auto  border-gray-400  mt-4">
           <div class="grid grid-cols-3 gap-4  ">
             <div class="">
               <Card />

@@ -10,6 +10,7 @@ import { Description } from "./compo/Description";
 import { Login } from "./compo/Login";
 import { Signup } from "./compo/Signup";
 import { Confirm } from "./compo/Confirm";
+import {Footer} from "./compo/Footer";
 
 function App() {
   debugger;
