@@ -1,4 +1,5 @@
 const User = require("../model/auth-model");
+const Recipe = require("../model/recipe-model");
 
 const userLogin = async (req, res) => {
   debugger;
@@ -75,4 +76,38 @@ const ChangePass = (req, res) => {
     res.status(200).json(userProfile);
 };
 
-module.exports = { userLogin, userSignup, ChangePass };
+const getAllRecipe = async(req,res) => {
+
+  try {
+    const data = await Recipe.find({});
+
+    if(!data){
+      return res.status(404).json({ message: 'not found' });
+    }
+    return res.status(200).json({ message: data });
+
+
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+
+}
+const getAllRecipeByid = async(req,res) => {
+
+  const {u_id} = String( req.body)
+
+  try {
+    const data = await Recipe.find({u_id});
+    console.log(data)
+
+    if(data.length === 0){
+      return res.status(404).json({ message: 'not found' });
+    }
+    return res.status(200).json(data);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+
+}
+
+module.exports = { userLogin, userSignup, ChangePass, getAllRecipe, getAllRecipeByid };

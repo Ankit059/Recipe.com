@@ -13,7 +13,6 @@ import { Confirm } from "./compo/Confirm";
 import {Footer} from "./compo/Footer";
 
 function App() {
-  debugger;
 
   return (
     <>

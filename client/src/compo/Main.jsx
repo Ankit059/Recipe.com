@@ -1,7 +1,6 @@
 import React from "react";
-import { Card} from "./Card";
-// import img from "./fav.png";
-
+import { Card } from "./Card";
+// import axios from 'axios';
 
 export const Main = () => {
   return (
@@ -14,53 +13,17 @@ export const Main = () => {
           </h1>
         </div> */}
         <div className=" flex space-x-5 mb-5 mt-20">
-          <div className="text-3xl font-thin text-yellow-600 cursor-pointer">All recipe</div>
+          <div className="text-3xl font-thin text-yellow-600 cursor-pointer">
+            All recipe
+          </div>
           <div className="text-3xl font-thin">|</div>
-          <div className="text-3xl font-thin text-yellow-600 cursor-pointer">My recipe</div>
+          <div className="text-3xl font-thin text-yellow-600 cursor-pointer">
+            My recipe
+          </div>
         </div>
         <div className="w-5/6 h-auto  border-gray-400  mt-4">
-          <div class="grid grid-cols-3 gap-4  ">
-            <div class="">
+            <div class="grid grid-cols-3 gap-4">
               <Card />
-            </div>
-
-            <div class=" ">
-              <Card />
-            </div>
-            <div class=" ">
-              <Card />
-            </div>
-            <div class=" ">
-              <Card />
-            </div>
-            <div class="">
-              <Card />
-            </div>
-
-            <div class=" ">
-              <Card />
-            </div>
-            <div class=" ">
-              <Card />
-            </div>
-            <div class=" ">
-              <Card />
-            </div>
-            <div class="  ">
-              <Card />
-            </div>
-            <div class="  ">
-              <Card />
-            </div>
-            <div class="  ">
-              <Card />
-            </div>
-            <div class="  ">
-              <Card />
-            </div>
-            <div class="  ">
-              <Card />
-            </div>
           </div>
         </div>
       </div>

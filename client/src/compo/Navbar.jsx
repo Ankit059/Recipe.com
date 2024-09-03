@@ -5,8 +5,8 @@ import { Outlet, Link } from "react-router-dom";
 export const Navbar = () => {
   return (
     <>
-      <div className="w-screen h-14 bg-fixed border-black bg-gray-800">
-        <div className="relative border-black">
+      <div className="w-screen  h-14 bg-fixed border-black bg-gray-800">
+        <div className="relative  border-black">
           <div className=" border-black w-52 h-14 ">
             {/* <div className="absolute left-3 top-3 w-14">
               <img src={img} alt="img" />

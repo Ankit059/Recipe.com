@@ -26,11 +26,15 @@ export const Description = () => {
         </div>
         <div className=" flex  border-black mt-20 h-4/5 w-4/5 rounded-2xl ">
           <div className="w-2/4  border-black">
-            <img src={img} className=" w-screen rounded-xl" alt="img" />
+            <img src={localStorage.getItem("img")} className=" w-full rounded-xl" alt="img" />
           </div>
-          <div className=" border-black w-2/4 h-3/4 overflow-x-scroll ">
-            <div className=" font-bold text-2xl m-4 font-serif">Food Item</div>
+          <div className=" border-black w-2/4 h-3/4 overflow-x-scroll relative">
+            <div className="flex items-center ">
+            <div className=" font-bold text-2xl m-4 font-serif">{localStorage.getItem("name")}</div>
+            <div className=" font-thin text-sm m-4 font-mono absolute right-10 text-red-800">By Ankit singh</div>
+            </div>
             <div className="m-4 font-serif text-lg">
+              {localStorage.getItem("desc")}
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, ea
               culpa similique ex asperiores, sunt iure vitae explicabo modi,
               molestiae dicta ipsam quasi corrupti distinctio nemo sequi vel
