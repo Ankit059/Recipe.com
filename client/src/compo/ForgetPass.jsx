@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import img from "./fav.png";
+import img from "../image/fav.png";
 import { Link } from "react-router-dom";
 
 export const ForgetPass = () => {

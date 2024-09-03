@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import food from "./f01.jfif";
 import { Link } from "react-router-dom";
 import axios from "axios";
 

@@ -1,7 +1,6 @@
 import React from "react";
 // import img from "./f01.jfif";
-import img from "./f02.jpg";
-import desImg from "./desImg.png";
+import desImg from "../image/desImg.png";
 import { Link } from "react-router-dom";
 
 export const Description = () => {

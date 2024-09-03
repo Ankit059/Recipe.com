@@ -11,6 +11,7 @@ import { Login } from "./compo/Login";
 import { Signup } from "./compo/Signup";
 import { Confirm } from "./compo/Confirm";
 import {Footer} from "./compo/Footer";
+import { Upload } from "./compo/UploadPage";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/forgetpass" element={<ForgetPass />} />
           <Route path="/" element={<Navbar />}>
             <Route index element={<Main />} />
+          <Route path="upload" element={<Upload />} />
             <Route path="favPage" element={<FavPage />} />
             <Route path="description" element={<Description />} />
           </Route>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "./Card";
 import { Link } from "react-router-dom";
-import Star from "./Star2.png";
+import Star from "../image/Star2.png";
 
 export const FavPage = () => {
   return (

@@ -1,6 +1,7 @@
 import React from "react";
-import img from "./fav.png";
+import img from "../image/fav.png";
 import { Outlet, Link } from "react-router-dom";
+import { MonitorUp } from 'lucide-react';
 
 export const Navbar = () => {
   return (
@@ -20,7 +21,7 @@ export const Navbar = () => {
               <img src={img} className="w-16 h-12 mt-1 ml-2" alt="img" />
               <div className="">
                 <h1 className="text-3xl font-serif ml-2 text-yellow-500 cursor-pointer">
-                  <Link to='/'>Recipe.com</Link>
+                  <Link to="/">Recipe.com</Link>
                 </h1>
                 <h1 className="text-xs font-serif ml-2 text-yellow-500 ">
                   explore the recipes in it ....
@@ -30,15 +31,23 @@ export const Navbar = () => {
           </div>
 
           <div className="w-5/6 h-14 flex justify-end items-center absolute top-0 right-0  border-black ">
-            <div className="mr-5 flex flex-col">
-              <div className="">
-                <Link
-                  className="text-lg font-serif  underline cursor-pointer text-yellow-500"
-                  to="/favPage"
-                >
-                  Favorite
-                </Link>
-              </div>
+          
+            <div className="mr-5  ">
+              <Link
+                className="text-lg font-serif  underline cursor-pointer flex text-yellow-500"
+                to="/upload"
+              >
+               <MonitorUp className="mt-1 mr-1" size={22}/>
+               <span>Upload</span>
+              </Link>
+            </div>
+            <div className="mr-5">
+              <Link
+                className="text-lg font-serif  underline cursor-pointer text-yellow-500"
+                to="/favPage"
+              >
+                Favorite
+              </Link>
             </div>
             <div className="mr-5">
               <Link
