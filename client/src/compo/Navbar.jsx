@@ -1,7 +1,7 @@
 import React from "react";
 import img from "../image/fav.png";
 import { Outlet, Link } from "react-router-dom";
-import { MonitorUp } from 'lucide-react';
+import { MonitorUp, Utensils, Star  } from 'lucide-react';
 
 export const Navbar = () => {
   return (
@@ -31,7 +31,15 @@ export const Navbar = () => {
           </div>
 
           <div className="w-5/6 h-14 flex justify-end items-center absolute top-0 right-0  border-black ">
-          
+          <div className="mr-5  ">
+              <Link
+                className="text-lg font-serif  underline cursor-pointer flex text-yellow-500"
+                to="/"
+              >
+               <Utensils  className="mt-1 mr-1" size={22}/>
+               <span>Recipe</span>
+              </Link>
+            </div>
             <div className="mr-5  ">
               <Link
                 className="text-lg font-serif  underline cursor-pointer flex text-yellow-500"
@@ -43,10 +51,11 @@ export const Navbar = () => {
             </div>
             <div className="mr-5">
               <Link
-                className="text-lg font-serif  underline cursor-pointer text-yellow-500"
+                className="text-lg font-serif  underline cursor-pointer flex text-yellow-500"
                 to="/favPage"
               >
-                Favorite
+                <Star className="mt-1 mr-1" size={22}/>
+                <span>Favorite</span>
               </Link>
             </div>
             <div className="mr-5">
@@ -63,7 +72,7 @@ export const Navbar = () => {
                 type="text"
                 placeholder="Search recipes"
               />
-              <button className=" font-semibold text-lg px-4 py-0.5 mr-6 rounded-lg text-white bg-gray-600  active:px-2 active:mr-1 active:py-0 active:mb-0.5">
+              <button className=" font-semibold text-lg px-4 py-0.5 mr-6 rounded-lg text-white bg-gray-600  active:bg-gray-700">
                 Search
               </button>
             </div>

@@ -16,12 +16,12 @@ export const FavPage = () => {
           <div className="mt-10 text-4xl text-yellow-600 font-bold underline">
             F@vour!tes{" "}
           </div>
-          <Link
+          {/* <Link
             to="/"
             className="absolute right-64 top-28 mt-1 font-semibold text-lg  px-4 py-0.5  rounded-lg text-white bg-gray-600  active:px-2 active:mr-1 active:py-0 active:mb-0.5"
           >
             Back
-          </Link>
+          </Link> */}
         </div>
         <div className="w-5/6 h-auto  border-gray-400  mt-4">
           <div class="grid grid-cols-3 gap-4  ">

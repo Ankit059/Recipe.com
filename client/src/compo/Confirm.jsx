@@ -7,7 +7,7 @@ export const Confirm = () => {
 
   const navigate = useNavigate();
 
-  const Cancel = () =>{
+  const Cancel =() =>{
     navigate("/");
   }
 

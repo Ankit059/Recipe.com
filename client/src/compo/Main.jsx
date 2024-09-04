@@ -22,7 +22,7 @@ export const Main = () => {
           </div>
         </div>
         <div className="w-5/6 h-auto  border-gray-400  mt-4">
-            <div class="grid grid-cols-3 gap-4">
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
               <Card />
           </div>
         </div>
