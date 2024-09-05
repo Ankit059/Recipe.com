@@ -24,12 +24,14 @@ export const Login = () => {
     });
 
       const result = await response.json();
+      // console.log(result)
 
       if (!response.ok) {
         alert(result.error);
       } else {
-        alert(result.message);
-        navigate("/")
+        alert("You are logged in!");
+        localStorage.setItem("id",result.message);
+        navigate("/");
       }
     } catch (err) {
       console.error("An error occurred:", err);

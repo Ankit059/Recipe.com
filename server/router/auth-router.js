@@ -8,6 +8,7 @@ router.route("/usersignup").post(controller.userSignup);
 router.route("/:id").patch(controller.ChangePass);
 router.route("/getallrecipe").get(controller.getAllRecipe);
 router.route("/getallrecipebyid").post(controller.getAllRecipeByid);
+router.route("/uploadrecipe").post(controller.uploadRecipe);
 
  
 module.exports = router; 

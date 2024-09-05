@@ -10,13 +10,13 @@ const userLogin = async (req, res) => {
     return res.status(400).json({ error: "Missing userid or password" });
   }
 
-  const data = await User.findOne({ userid, password });
-  // console.log(data)
-
-  if (!data) {
+  const response = await User.findOne({ userid, password });
+  const id = String(response._id);
+  
+  if (!response) {
     res.status(401).json({ error: "Invalid credentials" });
   } else {
-    res.status(200).json({ message: "Login successful" });
+    res.status(200).json({ message: id });
   }
 };
 
@@ -92,22 +92,44 @@ const getAllRecipe = async(req,res) => {
   }
 
 }
+
 const getAllRecipeByid = async(req,res) => {
 
-  const {u_id} = String( req.body)
+  const {u_id} =  req.body;
+  // console.log(u_id)
 
   try {
     const data = await Recipe.find({u_id});
-    console.log(data)
+    // console.log(data)
 
     if(data.length === 0){
       return res.status(404).json({ message: 'not found' });
     }
-    return res.status(200).json(data);
+    return res.status(200).json({message:data});
   } catch (error) {
     return res.status(400).json({ message: error });
   }
 
 }
 
-module.exports = { userLogin, userSignup, ChangePass, getAllRecipe, getAllRecipeByid };
+const uploadRecipe = async (req, res) => {
+  try {
+    const { r_name, r_img, r_desc, u_id } = req.body;
+
+    const newRecipe = new Recipe({
+      r_name,
+      r_img,
+      r_desc,
+      u_id,
+    });
+    await newRecipe.save();
+    res.status(201).json("Your recipe uploaded!");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+
+
+module.exports = { userLogin, userSignup, ChangePass, getAllRecipe, getAllRecipeByid, uploadRecipe };

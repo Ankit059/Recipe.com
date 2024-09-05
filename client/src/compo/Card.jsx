@@ -2,28 +2,60 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-export const Card = () => {
+export const Card = (props) => {
   const [data, setData] = useState(null);
+  // console.log(props.val)
 
-  useEffect(() => {
-    const fetchMessageStatus = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3002/api/auth/getallrecipe`
-        );
-        setData(response.data.message);
-        // console.log(response.data.message.r_name)
-        // const R_name = response.data.message[0].r_name;
-        // setError(null);
-      } catch (err) {
-        // setStatus(null);
-        console.error(err);
+  
+    useEffect(() => {
+      if(props.val === 0){
+        const fetchMessageStatus = async () => {
+          try {
+            const response = await axios.get(
+              `http://localhost:3002/api/auth/getallrecipe`
+            );
+            setData(response.data.message);
+            // console.log(response.data.message.r_name)
+            // const R_name = response.data.message[0].r_name;
+            // setError(null);
+          } catch (err) {
+            // setStatus(null);
+            console.error(err);
+          }
+        };
+  
+        fetchMessageStatus();
       }
-    };
+      else{
+        const fetchMessageStatus = async () => {
+          const u_id = localStorage.getItem("id");
+          // console.log(u_id)
+          try {
+            const response = await fetch('http://localhost:3002/api/auth/getallrecipebyid', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ u_id }),
+            });
+            const result = await response.json();
+            setData(result.message);
+            console.log(data);
 
-    fetchMessageStatus();
-  }, []);
-
+            if(!response){
+              console.log("not fetching")
+            }
+          } catch (err) {
+            // setStatus(null);
+            console.error(err);
+          }
+        };
+  
+        fetchMessageStatus();
+      }
+    }, []);
+  
+ 
 
   return (
     <>

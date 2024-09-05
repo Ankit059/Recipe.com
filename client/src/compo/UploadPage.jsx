@@ -1,18 +1,80 @@
 import React from "react";
 import { useState } from "react";
 import { MonitorUp } from "lucide-react";
+import axios from 'axios';
+
 
 export const Upload = () => {
-  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+  const [file, setFile] = useState(null);
+  const [name, setName] = useState(null);
+  const [desc, setDesc] = useState(null);
+  
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      // Create a URL for the image file
-      const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl);
+    setFile(e.target.files[0]);
+  };
+
+  const handleSubmit = async (event) => {
+    debugger
+    const id = localStorage.getItem("id");
+    try {
+      const data = {
+        r_name:name,
+        r_img:imageUrl,
+        r_desc:desc,
+        u_id:id
+      };
+
+      const response = await fetch(
+        "http://localhost:3002/api/auth/uploadrecipe",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      
+    const result = await response.json();
+
+      if (!response.ok) {
+        alert(result);
+      } else {
+        alert(result);
+      }
+    } catch (err) {
+      console.error("An error occurred:", err);
     }
   };
+
+  const onUpload = async () => {
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3002/api/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setImageUrl("http://localhost:3002"+response.data.filePath);
+      
+      handleSubmit();
+      
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+  };
+
+
 
   return (
     <>
@@ -22,7 +84,6 @@ export const Upload = () => {
             <MonitorUp className="mr-2" size={39} />
             <h1>Upl0@d Y0ur Rec!pe</h1>
           </div>
-          
         </div>
         <div className="w-3/4 h-3/4  flex justify-center items-center mb-10">
           <div className="w-2/5 h-3/6 flex bg-red-200 flex-col justify-center items-center border-2 border-red-100 shadow-xl rounded-3xl">
@@ -35,9 +96,9 @@ export const Upload = () => {
               className="w-52"
               onChange={handleImageChange}
             />
-            {image && (
+            {imageUrl && (
               <img
-                src={image}
+                src={imageUrl}
                 alt="Uploaded Preview"
                 className="mt-6"
                 style={{ width: "300px", height: "auto" }}
@@ -54,6 +115,8 @@ export const Upload = () => {
                   type="text"
                   placeholder="Enter your recipe name"
                   className=" w-full p-2 font-sans"
+                  onChange={(e)=>setName(e.target.value)}
+                  required
                 />
               </div>
               <div className="mt-2 w-96">
@@ -63,12 +126,15 @@ export const Upload = () => {
                 <textarea
                   type="text"
                   placeholder="Enter your description here..."
+                  onChange={(e)=>setDesc(e.target.value)}
                   className=" w-full h-32 p-2 font-sans"
+                  required
                 />
               </div>
               <div className="flex items-center justify-center mt-4">
                 <button
                   type="Submit"
+                  onClick={onUpload}
                   className="border-2 border-gray-100 bg-green-400 active:bg-green-600 font-bold w-24 h-10 rounded-lg text-xl "
                 >
                   Submit
