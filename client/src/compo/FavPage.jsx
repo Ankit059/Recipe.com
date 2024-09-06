@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "./Card";
-import { Link } from "react-router-dom";
+import { Footer } from '../compo/Footer';
 import Star from "../image/Star2.png";
 
 export const FavPage = () => {
@@ -29,6 +29,7 @@ export const FavPage = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

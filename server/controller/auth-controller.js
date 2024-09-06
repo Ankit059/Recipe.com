@@ -129,6 +129,10 @@ const uploadRecipe = async (req, res) => {
   }
 };
 
+const searchRecipe = async(req, res) =>{
+  
+}
+
 
 
 

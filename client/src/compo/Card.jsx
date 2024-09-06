@@ -1,14 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Star } from "lucide-react";
 import axios from "axios";
+import { Loader } from '../compo/Loader'
 
 export const Card = (props) => {
   const [data, setData] = useState(null);
-  // console.log(props.val)
+  const [loading, setLoading] = useState(false);
+  const [color, setColor] = useState("#fff");
+  const [visible, setVisible] = useState("invisible");
+
+  const handleColor = () =>{
+    if(color === "#fff"){
+      setColor("yellow")
+    }
+    else{
+      setColor("#fff")
+    }
+  }
 
   
     useEffect(() => {
       if(props.val === 0){
+
         const fetchMessageStatus = async () => {
           try {
             const response = await axios.get(
@@ -31,6 +45,7 @@ export const Card = (props) => {
           const u_id = localStorage.getItem("id");
           // console.log(u_id)
           try {
+            setLoading(true);
             const response = await fetch('http://localhost:3002/api/auth/getallrecipebyid', {
               method: 'POST',
               headers: {
@@ -45,6 +60,7 @@ export const Card = (props) => {
             if(!response){
               console.log("not fetching")
             }
+          setLoading(false);
           } catch (err) {
             // setStatus(null);
             console.error(err);
@@ -53,15 +69,19 @@ export const Card = (props) => {
   
         fetchMessageStatus();
       }
-    }, []);
+    }, [props.val]);
   
- 
+    if(loading){
+      return(
+        <span><Loader/></span>
+      )
+    }
 
   return (
     <>
       {Array.isArray(data) &&
         data.map((item) => (
-            <div className="flex flex-col rounded-xl w-3/4  m-8  ">
+            <div className="flex flex-col rounded-xl w-3/4  m-8 relative ">
               <Link
                 to="/description"
                 onClick={()=>{localStorage.setItem("name",item.r_name);
@@ -82,6 +102,11 @@ export const Card = (props) => {
                     localStorage.setItem("img",item.r_img);
                     localStorage.setItem("desc",item.r_desc);
                   }}>Recipe Name :</Link>
+                  <Star fill={color} onClick={()=>handleColor()} className=" absolute top-2 right-3 z-50" onMouseLeave={()=>setVisible("invisible")} onMouseEnter={()=>setVisible("visible")} strokeWidth={0} />
+                  <div className={`${visible} absolute top-6 w-24 text-center right-8 bg-white rounded-b-xl
+                   border-gray-300 border-2 rounded-l-xl text-gray-500 shadow-2xl shadow-gray-500  text-xs font-mono`}>
+                    Add to Favourite!
+                  </div>
                   <span className=""> {item.r_name}</span>
                 </div>
                 <div className="text-xs font-sans overflow-hidden px-2">
