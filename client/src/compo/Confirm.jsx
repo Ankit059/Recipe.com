@@ -37,7 +37,7 @@ export const Confirm = () => {
                 type="submit"
                 //   onClick={onSubmit}
                 className="w-2/5 bg-blue-500 mb-8 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"
-              ><Link to="/login">Logout</Link>
+              ><Link onClick={()=>localStorage.setItem("name","")} to="/login">Logout</Link>
                 </button>
               <button
                 type=""

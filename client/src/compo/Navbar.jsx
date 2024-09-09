@@ -1,22 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import img from "../image/fav.png";
 import { Outlet, Link } from "react-router-dom";
 import { MonitorUp, Utensils, Star  } from 'lucide-react';
+import { Search, UserRound, CircleX  } from 'lucide-react';
+import { performSearch } from '../thunks/searchThunk'
+import { useDispatch } from "react-redux";
 
 export const Navbar = () => {
+  
+  const [val,setVal] = useState("");
+  const [visible,setVisible] = useState("invisible");
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(performSearch(val));
+  };
+
   return (
     <>
-      <div className="w-screen  h-14 bg-fixed border-black bg-gray-800">
+      <div className="w-screen  h-14 bg-fixed border-black bg-gray-800" onMouseLeave={()=>setVisible("invisible")}>
         <div className="relative  border-black">
           <div className=" border-black w-52 h-14 ">
-            {/* <div className="absolute left-3 top-3 w-14">
-              <img src={img} alt="img" />
-            </div> */}
-            {/* <div className="absolute top-3 left-14">
-              <div className="text-2xl text-yellow-500 font-mono cursor-pointer">
-                <a href="/">Recipe.Com</a>
-              </div>
-            </div> */}
+            
             <div className=" flex mb-5 ">
               <img src={img} className="w-16 h-12 mt-1 ml-2" alt="img" />
               <div className="">
@@ -58,25 +64,38 @@ export const Navbar = () => {
                 <span>Favorite</span>
               </Link>
             </div>
-            <div className="mr-5">
-              <Link
-                className="text-lg font-serif underline cursor-pointer text-yellow-500"
-                to="/confirm"
-              >
-                Logout
-              </Link>
-            </div>
-            <div className="">
+            <div className="relative flex justify-center items-center" onMouseLeave={()=>setVisible("invisible")}>
               <input
-                className=" w-96 h-10 mr-2 rounded-xl text-lg font-semibold pl-4 border-2 border-black "
+                className="  w-80 h-10 pr-9 rounded-l-xl text-lg font-semibold pl-4 border-2 border-black "
                 type="text"
+                onChange={(e)=>setVal(e.target.value)}
+                value={val}
                 placeholder="Search recipes"
               />
-              <button className=" font-semibold text-lg px-4 py-0.5 mr-6 rounded-lg text-white bg-gray-600  active:bg-gray-700">
-                Search
+              <CircleX size={22} onClick={()=>setVal("")} fill="gray" color="white" className="cursor-pointer absolute right-16"/>
+              <button 
+              onClick={()=>handleSubmit} 
+              className=" font-semibold h-9 text-lg px-2 py-0.5 mr-3 rounded-r-xl text-white bg-gray-600  active:bg-gray-700">
+                <Search/>
+              </button>
+            </div>
+            <div className="flex justify-center items-center">
+              <button onMouseEnter={()=>setVisible("visible")} className=" font-semibold h-9 text-lg px-2 py-0.5 mr-6 rounded-full
+               text-white bg-gray-600  active:bg-gray-700">
+                <UserRound/>
               </button>
             </div>
           </div>
+          <div className={`${visible} absolute right-8`} onMouseLeave={()=>setVisible("invisible")}>
+              <table className="w-28 text-lg font-serif">
+                <tr>
+                  <td className="bg-blue-200 text-center">{localStorage.getItem("r_name")}</td>
+                </tr>
+                <tr>
+                  <td className="bg-red-500 text-white cursor-pointer text-center underline"><Link to='/confirm' >Logout</Link></td>
+                </tr>
+              </table>
+            </div>
         </div>
         <Outlet />
       </div>

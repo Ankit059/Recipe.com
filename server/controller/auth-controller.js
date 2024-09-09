@@ -12,11 +12,15 @@ const userLogin = async (req, res) => {
 
   const response = await User.findOne({ userid, password });
   const id = String(response._id);
+  const fname = String(response.firstname);
+  const lname = String(response.lastname);
+  const name = fname+" "+lname;
+  console.log(name);
   
   if (!response) {
     res.status(401).json({ error: "Invalid credentials" });
   } else {
-    res.status(200).json({ message: id });
+    res.status(200).json({ message: {id, name} });
   }
 };
 
@@ -129,11 +133,27 @@ const uploadRecipe = async (req, res) => {
   }
 };
 
-const searchRecipe = async(req, res) =>{
-  
+const searchRecipeByName = async(req, res) =>{
+  const {name} =  req.body;
+  console.log(name)
+
+  try {
+    // const data = await Recipe.find({r_name});
+    const data = await Recipe.find({
+      r_name: { $regex: `^${name}`, $options: 'i' } // Case-insensitive starts with search
+    });
+    // console.log(data)
+
+    if(data.length === 0){
+      return res.status(404).json({ message: 'not found' });
+    }
+    return res.status(200).json({message:data});
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
 }
 
 
 
 
-module.exports = { userLogin, userSignup, ChangePass, getAllRecipe, getAllRecipeByid, uploadRecipe };
+module.exports = { userLogin, userSignup, ChangePass, getAllRecipe, getAllRecipeByid, searchRecipeByName, uploadRecipe };

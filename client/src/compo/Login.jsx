@@ -30,7 +30,8 @@ export const Login = () => {
         alert(result.error);
       } else {
         alert("You are logged in!");
-        localStorage.setItem("id",result.message);
+        localStorage.setItem("id",result.message.id);
+        localStorage.setItem("r_name",result.message.name);
         navigate("/");
       }
     } catch (err) {
