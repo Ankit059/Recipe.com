@@ -10,18 +10,19 @@ export const Card = (props) => {
   const [color, setColor] = useState("#fff");
   const [visible, setVisible] = useState("invisible");
 
+  const search = props.searchVal;
+  // console.log(props.searchVal);
   const handleColor = () =>{
     if(color === "#fff"){
-      setColor("yellow")
+      setColor("yellow") 
     }
     else{
       setColor("#fff")
     }
   }
 
-  
     useEffect(() => {
-      if(props.val === 0){
+      if(props.val === 0 && props.searchVal === ""){
 
         const fetchMessageStatus = async () => {
           try {
@@ -40,7 +41,7 @@ export const Card = (props) => {
   
         fetchMessageStatus();
       }
-      else{
+      if(props.val === 1 && props.searchVal === ""){
         const fetchMessageStatus = async () => {
           const u_id = localStorage.getItem("id");
           // console.log(u_id)
@@ -55,7 +56,7 @@ export const Card = (props) => {
             });
             const result = await response.json();
             setData(result.message);
-            console.log(data);
+            // console.log(data);
 
             if(!response){
               console.log("not fetching")
@@ -69,7 +70,38 @@ export const Card = (props) => {
   
         fetchMessageStatus();
       }
-    }, [props.val]);
+      if( props.searchVal !== ""){
+        const handleSearch = async () => {
+          debugger;
+         
+          const name = String(search);
+      
+          try {
+            // setLoading(true);
+            const response = await fetch('http://localhost:3002/api/auth/searchrecipebyname', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({name}),
+            });
+            const result = await response.json();
+            setData(result.message);
+            // console.log(result.message);
+      
+            if(!response){
+              console.log("not fetching")
+            }
+          // setLoading(false);
+          } catch (err) {
+            // setStatus(null);
+            console.error(err);
+          }
+        };
+  
+        handleSearch();
+      }
+    }, [props.val,props.searchVal]);
   
     if(loading){
       return(

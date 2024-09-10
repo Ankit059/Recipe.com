@@ -50,20 +50,6 @@ const userSignup = async (req, res) => {
   }
 };
 
-// app.patch('/api/user/:id', (req, res) => {
-//     const { id } = req.params;
-//     const updates = req.body;
-
-//     if (id != userProfile.id) {
-//       return res.status(404).json({ message: 'User not found' });
-//     }
-
-//     // Apply updates to the user profile
-//     userProfile = { ...userProfile, ...updates };
-
-//     res.status(200).json(userProfile);
-//   });
-
 const ChangePass = (req, res) => {
     const { _id } = req.params;
     const updates = req.body;
@@ -135,14 +121,11 @@ const uploadRecipe = async (req, res) => {
 
 const searchRecipeByName = async(req, res) =>{
   const {name} =  req.body;
-  console.log(name)
 
   try {
-    // const data = await Recipe.find({r_name});
     const data = await Recipe.find({
       r_name: { $regex: `^${name}`, $options: 'i' } // Case-insensitive starts with search
     });
-    // console.log(data)
 
     if(data.length === 0){
       return res.status(404).json({ message: 'not found' });

@@ -2,20 +2,19 @@ import React, { useState } from "react";
 import img from "../image/fav.png";
 import { Outlet, Link } from "react-router-dom";
 import { MonitorUp, Utensils, Star  } from 'lucide-react';
-import { Search, UserRound, CircleX  } from 'lucide-react';
-import { performSearch } from '../thunks/searchThunk'
-import { useDispatch } from "react-redux";
+import {  UserRound} from 'lucide-react';
+// import { performSearch } from '../thunks/searchThunk'
+// import { useDispatch } from "react-redux";
 
 export const Navbar = () => {
   
-  const [val,setVal] = useState("");
   const [visible,setVisible] = useState("invisible");
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(performSearch(val));
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   dispatch(performSearch(val));
+  // };
 
   return (
     <>
@@ -55,7 +54,7 @@ export const Navbar = () => {
                <span>Upload</span>
               </Link>
             </div>
-            <div className="mr-5">
+            <div className="mr-10" onMouseLeave={()=>setVisible("invisible")}>
               <Link
                 className="text-lg font-serif  underline cursor-pointer flex text-yellow-500"
                 to="/favPage"
@@ -64,7 +63,7 @@ export const Navbar = () => {
                 <span>Favorite</span>
               </Link>
             </div>
-            <div className="relative flex justify-center items-center" onMouseLeave={()=>setVisible("invisible")}>
+            {/* <div className="relative flex justify-center items-center" onMouseLeave={()=>setVisible("invisible")}>
               <input
                 className="  w-80 h-10 pr-9 rounded-l-xl text-lg font-semibold pl-4 border-2 border-black "
                 type="text"
@@ -74,10 +73,17 @@ export const Navbar = () => {
               />
               <CircleX size={22} onClick={()=>setVal("")} fill="gray" color="white" className="cursor-pointer absolute right-16"/>
               <button 
-              onClick={()=>handleSubmit} 
+              // onClick={()=>handleSubmit} 
               className=" font-semibold h-9 text-lg px-2 py-0.5 mr-3 rounded-r-xl text-white bg-gray-600  active:bg-gray-700">
                 <Search/>
               </button>
+            </div> */}
+            <div className="mr-2" onMouseLeave={()=>setVisible("invisible")}>
+              <span
+                className="text-lg font-sans  cursor-pointer flex text-green-500"
+              >
+               <span>{localStorage.getItem("r_name")}</span>
+              </span>
             </div>
             <div className="flex justify-center items-center">
               <button onMouseEnter={()=>setVisible("visible")} className=" font-semibold h-9 text-lg px-2 py-0.5 mr-6 rounded-full
