@@ -15,7 +15,7 @@ const userLogin = async (req, res) => {
   const fname = String(response.firstname);
   const lname = String(response.lastname);
   const name = fname+" "+lname;
-  console.log(name);
+  // console.log(name);
   
   if (!response) {
     res.status(401).json({ error: "Invalid credentials" });
