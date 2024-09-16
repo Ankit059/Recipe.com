@@ -9,9 +9,10 @@ export const Card = (props) => {
   const [loading, setLoading] = useState(false);
   const [color, setColor] = useState("#fff");
   const [visible, setVisible] = useState("invisible");
+  const [visible1, setVisible1] = useState("invisible");
+
 
   const search = props.searchVal;
-  // console.log(props.searchVal);
   const handleColor = () =>{
     if(color === "#fff"){
       setColor("yellow") 
@@ -30,11 +31,8 @@ export const Card = (props) => {
               `http://localhost:3002/api/auth/getallrecipe`
             );
             setData(response.data.message);
-            // console.log(response.data.message.r_name)
-            // const R_name = response.data.message[0].r_name;
-            // setError(null);
+            setVisible1("invisible")
           } catch (err) {
-            // setStatus(null);
             console.error(err);
           }
         };
@@ -77,7 +75,6 @@ export const Card = (props) => {
           const name = String(search);
       
           try {
-            // setLoading(true);
             const response = await fetch('http://localhost:3002/api/auth/searchrecipebyname', {
               method: 'POST',
               headers: {
@@ -87,14 +84,15 @@ export const Card = (props) => {
             });
             const result = await response.json();
             setData(result.message);
-            // console.log(result.message);
+
+            if (result.message === "not found") {
+              setVisible1("visible");
+            }
       
             if(!response){
               console.log("not fetching")
             }
-          // setLoading(false);
           } catch (err) {
-            // setStatus(null);
             console.error(err);
           }
         };
@@ -113,7 +111,7 @@ export const Card = (props) => {
     <>
       {Array.isArray(data) &&
         data.map((item) => (
-            <div className="flex flex-col rounded-xl w-3/4  m-8 relative ">
+            <div className=" flex flex-col rounded-xl w-3/4  m-8 relative ">
               <Link
                 to="/description"
                 onClick={()=>{localStorage.setItem("name",item.r_name);
@@ -141,6 +139,7 @@ export const Card = (props) => {
                   </div>
                   <span className=""> {item.r_name}</span>
                 </div>
+
                 <div className="text-xs font-sans overflow-hidden px-2">
                   {item.r_desc}
                 </div>
@@ -149,6 +148,11 @@ export const Card = (props) => {
             </div>
 
         ))}
+        <div
+        className={` ${visible1} fixed flex justify-center items-center h-96 w-screen border-black`}
+      >
+        <div className="text-2xl text-gray-500">Recipe not found</div>
+      </div>
     </>
   );
 };

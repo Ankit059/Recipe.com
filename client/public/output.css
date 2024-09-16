@@ -645,6 +645,14 @@ video {
   top: 1.5rem;
 }
 
+.right-16 {
+  right: 4rem;
+}
+
+.right-32 {
+  right: 8rem;
+}
+
 .z-20 {
   z-index: 20;
 }
@@ -772,6 +780,10 @@ video {
 
 .mt-6 {
   margin-top: 1.5rem;
+}
+
+.mr-96 {
+  margin-right: 24rem;
 }
 
 .block {

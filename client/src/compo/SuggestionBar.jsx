@@ -3,13 +3,12 @@ import React, { useState, useEffect } from "react";
 export const SuggestionBar = (props) => {
   const search = props.search;
   const [data, setData] = useState("");
-  const [visible, setVisible] = useState("invisible");
   // const [dataFromChild, setDataFromChild] = useState("");
 
-  // const handleData = () => {
-  //   props.senddatatochild(data.r_name);
-  //   console.log("child ="+data);
-  // };
+  const handleData = (item) => {
+    props.func(item.r_name);
+    // console.log("child ="+data);
+  };
 
   useEffect(() => {
     const handleSearch = async () => {
@@ -31,9 +30,7 @@ export const SuggestionBar = (props) => {
           );
           const result = await response.json();
           setData(result.message);
-          if (result.message === "not found") {
-            setVisible("visible");
-          }
+          console.log(result.message);
 
           if (!response) {
             console.log("not fetching");
@@ -55,21 +52,17 @@ export const SuggestionBar = (props) => {
       {Array.isArray(data) &&
         data.map((item) => (
           <div
-          // onClick={handleData}
+          onClick={()=>handleData(item)}
+          key={item._id}
             className={` flex border-2 border-gray-200 w-80 rounded-md h-8 bg-gray-100`}
           >
             <img src={item.r_img} className="w-8" alt="img" />
             <h1 className="font-serif ml-3 text-lg text-blue-700">
-              {" "}
               {item.r_name}
             </h1>
           </div>
         ))}
-      <div
-        className={` ${visible} flex justify-center items-center  ml-10 h-96 w-96  border-black`}
-      >
-        <div className="text-2xl text-gray-500">Recipe not found</div>
-      </div>
+      
     </div>
   );
 };
