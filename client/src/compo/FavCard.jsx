@@ -4,7 +4,7 @@ import { Star } from "lucide-react";
 import axios from "axios";
 import { Loader } from '../compo/Loader'
 
-export const Card = (props) => {
+export const FavCard = (props) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [color, setColor] = useState("#fff");
@@ -24,7 +24,7 @@ export const Card = (props) => {
 
     useEffect(() => {
       debugger;
-      if(props.val === "2" ){
+    //   if(props.val === "2" ){
 
         const fetchMessageStatus2 = async () => {
           const fu_id = localStorage.getItem("id");
@@ -53,84 +53,8 @@ export const Card = (props) => {
         };
   
         fetchMessageStatus2();
-      }
-      if(props.val === 0 && props.searchVal === ""){
-
-        const fetchMessageStatus = async () => {
-          try {
-            const response = await axios.get(
-              `http://localhost:3002/api/auth/getallrecipe`
-            );
-            setData(response.data.message);
-            setVisible1("invisible")
-          } catch (err) {
-            console.error(err);
-          }
-        };
-  
-        fetchMessageStatus();
-      }
-      if(props.val === 1 && props.searchVal === ""){
-        const fetchMessageStatus = async () => {
-          const u_id = localStorage.getItem("id");
-          // console.log(u_id)
-          try {
-            setLoading(true);
-            const response = await fetch('http://localhost:3002/api/auth/getallrecipebyid', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ u_id }),
-            });
-            const result = await response.json();
-            setData(result.message);
-            // console.log(data);
-
-            if(!response){
-              console.log("not fetching")
-            }
-          setLoading(false);
-          } catch (err) {
-            // setStatus(null);
-            console.error(err);
-          }
-        };
-  
-        fetchMessageStatus();
-      }
-      if( props.searchVal !== ""){
-        const handleSearch = async () => {
-          debugger;
-         
-          const name = String(search);
-      
-          try {
-            const response = await fetch('http://localhost:3002/api/auth/searchrecipebyname', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({name}),
-            });
-            const result = await response.json();
-            setData(result.message);
-
-            if (result.message === "not found") {
-              setVisible1("visible");
-            }
-      
-            if(!response){
-              console.log("not fetching")
-            }
-          } catch (err) {
-            console.error(err);
-          }
-        };
-  
-        handleSearch();
-      }
-    }, [props.val,props.searchVal]);
+    //   }
+    }, []);
   
     if(loading){
       return(
@@ -145,34 +69,34 @@ export const Card = (props) => {
             <div className=" flex flex-col rounded-xl w-3/4  m-8 relative ">
               <Link
                 to="/description"
-                onClick={()=>{localStorage.setItem("name",item.r_name);
-                  localStorage.setItem("img",item.r_img);
-                  localStorage.setItem("desc",item.r_desc);
+                onClick={()=>{localStorage.setItem("name",item.f_name);
+                  localStorage.setItem("img",item.f_img);
+                  localStorage.setItem("desc",item.f_desc);
                 }}
                 className="border-2 flex justify-center items-center h-60 w-full  rounded-t-xl hover:overflow-visible bg-gray-900  cursor-pointer"
               >
                 <img
-                  src={item.r_img}
+                  src={item.f_img}
                   alt="img"
                   className="w-full h-full rounded-t-xl border-2 border-black"
                 />
               </Link>
               <div className=" flex flex-col border-2 h-20 border-black rounded-b-lg ">
                 <div className=" font-bold font-serif px-2 hover:underline cursor-pointer">
-                  <Link to="/description" onClick={()=>{localStorage.setItem("name",item.r_name);
-                    localStorage.setItem("img",item.r_img);
-                    localStorage.setItem("desc",item.r_desc);
+                  <Link to="/description" onClick={()=>{localStorage.setItem("name",item.f_name);
+                    localStorage.setItem("img",item.f_img);
+                    localStorage.setItem("desc",item.f_desc);
                   }}>Recipe Name :</Link>
                   <Star fill={color} onClick={()=>handleColor()} className=" absolute top-2 right-3 z-50" onMouseLeave={()=>setVisible("invisible")} onMouseEnter={()=>setVisible("visible")} strokeWidth={0} />
                   <div className={`${visible} absolute top-6 w-24 text-center right-8 bg-white rounded-b-xl
                    border-gray-300 border-2 rounded-l-xl text-gray-500 shadow-2xl shadow-gray-500  text-xs font-mono`}>
                     Add to Favourite!
                   </div>
-                  <span className=""> {item.r_name}</span>
+                  <span className=""> {item.f_name}</span>
                 </div>
 
                 <div className="text-xs font-sans overflow-hidden px-2">
-                  {item.r_desc}
+                  {item.f_desc}
                 </div>
                 <div className=""></div>
               </div>

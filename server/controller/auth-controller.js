@@ -11,17 +11,18 @@ const userLogin = async (req, res) => {
   }
 
   const response = await User.findOne({ userid, password });
+  console.log(response)
+  if (!response) {
+    return res.status(401).json({ error: "Invalid credentials" });
+  } 
   const id = String(response._id);
   const fname = String(response.firstname);
   const lname = String(response.lastname);
   const name = fname+" "+lname;
   // console.log(name);
   
-  if (!response) {
-    res.status(401).json({ error: "Invalid credentials" });
-  } else {
+  
     res.status(200).json({ message: {id, name} });
-  }
 };
 
 const userSignup = async (req, res) => {
@@ -144,31 +145,7 @@ const searchRecipeByName = async(req, res) =>{
   }
 }
 
-// const addFavRecipe = async (req, res) => {
-//   debugger;
-//   try {
-//     const { userid, firstname, lastname, email, password, confirmPass, type } =
-//       req.body;
 
-//     if (password == confirmPass) {
-//       const newUser = new User({
-//         userid,
-//         firstname,
-//         lastname,
-//         email,
-//         password,
-//         confirmPass,
-//         type,
-//       });
-//       await newUser.save();
-//       res.status(201).json("You are signed up!");
-//     } else {
-//       res.status(400).json("password and confirm password are not same");
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
 
 
 module.exports = { userLogin, userSignup, ChangePass, getAllRecipe, getAllRecipeByid, searchRecipeByName, uploadRecipe };

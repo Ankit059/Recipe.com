@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "./Card";
+import { FavCard } from "./FavCard";
 import Star from "../image/Star2.png";
 
 export const FavPage = () => {
@@ -24,7 +24,7 @@ export const FavPage = () => {
         </div>
         <div className="w-5/6 h-auto  border-gray-400  mt-4">
           <div class="grid grid-cols-3 gap-4  ">
-            <Card />
+            <FavCard val="2"/>
           </div>
         </div>
       </div>

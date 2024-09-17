@@ -20,7 +20,7 @@ const fav_Schema = new mongoose.Schema({
     
 });
 
-const fav_recipe = mongoose.model('fav_recipe', favSchema);
+const fav_recipe = mongoose.model('fav_recipe', fav_Schema);
 
 module.exports = fav_recipe;
 

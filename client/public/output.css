@@ -605,8 +605,8 @@ video {
   right: 0.75rem;
 }
 
-.right-6 {
-  right: 1.5rem;
+.right-32 {
+  right: 8rem;
 }
 
 .right-60 {
@@ -643,14 +643,6 @@ video {
 
 .top-6 {
   top: 1.5rem;
-}
-
-.right-16 {
-  right: 4rem;
-}
-
-.right-32 {
-  right: 8rem;
 }
 
 .z-20 {
@@ -782,8 +774,8 @@ video {
   margin-top: 1.5rem;
 }
 
-.mr-96 {
-  margin-right: 24rem;
+.ml-52 {
+  margin-left: 13rem;
 }
 
 .block {
